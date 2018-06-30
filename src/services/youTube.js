@@ -1,7 +1,7 @@
 angular.module('video-player')
   .service('youTube', function($http) {
     var youTube = {
-      async: function(string) {
+      search: function(string) {
       // $http returns a promise, which has a then function, which also returns a promise
         var promise = $http.get( 'https://www.googleapis.com/youtube/v3/search', {
           params: {

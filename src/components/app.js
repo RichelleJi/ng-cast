@@ -17,9 +17,9 @@ angular.module('video-player')
         this.currentVideo = video;
       };
     
-      this.searchResults = (val) => {
+      this.searchResults = (result) => {
         var context = this;
-        new youTube.async(val).then(function(d) {
+        new youTube.search(result).then(function(d) {
           $scope.data = d;
           context.videos = $scope.data.data.items;
           context.currentVideo = context.videos[0];
@@ -40,7 +40,7 @@ angular.module('video-player')
       <div class="col-md-6 col-md-offset-3">
         <search
           on-click= "$ctrl.searchResults"
-          val= "$ctrl.val"
+          result= "$ctrl.result"
         ><h5><em>search</em> component goes here</h5></search>
       </div>
     </nav>
