@@ -8,7 +8,8 @@ angular.module('video-player')
     template: `
   <div class="video-player">
   <div class="embed-responsive embed-responsive-16by9">
-    <iframe class="embed-responsive-item" ng-src="{{'https://www.youtube.com/embed/' + $ctrl.video.id.videoId}}" allowFullScreen></iframe>
+    <iframe class="embed-responsive-item" ng-if="$ctrl.video" ng-src="{{'https://www.youtube.com/embed/' + $ctrl.video.id.videoId}}" allowFullScreen></iframe>
+    <div ng-if="!$ctrl.video">Please wait</div>
   </div>
   <div class="video-player-details">
     <h3>{{ $ctrl.video.snippet.title}}</h3>
