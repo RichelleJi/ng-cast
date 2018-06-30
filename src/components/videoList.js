@@ -1,11 +1,11 @@
 angular.module('video-player')
-.component('videoList', {
-  bindings: {
-    onClick: '<',
-    videos: '<',
-  },
+  .component('videoList', {
+    bindings: {
+      onClick: '<',
+      videos: '<',
+    },
   
-  template: `
+    template: `
     <ul class="video-list">
       <video-list-entry
       on-click = "$ctrl.onClick"
@@ -14,7 +14,7 @@ angular.module('video-player')
       ></video-list-entry>
     </ul>  
   `
-});
+  });
 
 
 
