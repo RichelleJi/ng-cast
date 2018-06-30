@@ -1,37 +1,24 @@
 angular.module('video-player')
   .component('app', {
-  // bindings: {
-    
-  // }, 
-    controller: function (youTube, $scope) {
-    
-    // $scope.callYouTube = function() {
-    //   new youTube();
-    // }
-      
-      this.val = '';
+      controller: function (youTube) {
+
       this.currentVideo = window.exampleVideoData[0];
       this.videos = window.exampleVideoData;
 
       this.selectVideo = (video) => {
         this.currentVideo = video;
       };
-    
-      this.searchResults = (result) => {
-        var context = this;
-        new youTube.search(result).then(function(d) {
-          $scope.data = d;
-          context.videos = $scope.data.data.items;
-          context.currentVideo = context.videos[0];
-        });
-      };
-      
 
-    
-      // $scope.data = null;
-      // dataService.getData(function(dataResponse) {
-      //   $scope.data = dataResponse;
-      // });
+      this.searchResults = (videos) => {
+        this.videos = videos;
+        this.currentVideo = this.videos[0];
+      }
+
+
+      youTube.search('cat', this.searchResults)
+
+ 
+
     }, template:
   
   `
@@ -39,8 +26,9 @@ angular.module('video-player')
     <nav class="navbar">
       <div class="col-md-6 col-md-offset-3">
         <search
-          on-click= "$ctrl.searchResults"
-          result= "$ctrl.result"
+          string= "$ctrl.val"
+          search-results = "$ctrl.searchResults"
+          result="$ctrl.searchResults"
         ><h5><em>search</em> component goes here</h5></search>
       </div>
     </nav>
@@ -60,10 +48,3 @@ angular.module('video-player')
   </div>
 `
   }); 
-
-// myApp.controller(‘AngularJSCtrl’, function($scope, dataService) {
-//     $scope.data = null;
-//     dataService.getData(function(dataResponse) {
-//         $scope.data = dataResponse;
-//     });
-// });
